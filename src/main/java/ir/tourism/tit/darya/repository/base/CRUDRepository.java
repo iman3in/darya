@@ -17,6 +17,7 @@ import java.beans.IntrospectionException;
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.*;
 import java.sql.*;
+import java.sql.Date;
 import java.util.*;
 
 @Repository
@@ -441,7 +442,10 @@ public class CRUDRepository<T extends BaseEntity> implements CRUDRepositoryInter
                  * @Todo
                  * Write callableStatement.setFelan for All DataType that we using in project
                  */
-                callableStatement.setObject(entry.getKey(), entry.getValue());
+                if (entry.getValue() instanceof java.util.Date)
+                    callableStatement.setDate(entry.getKey(), new java.sql.Date(((java.util.Date) entry.getValue()).getTime()));
+                else
+                    callableStatement.setObject(entry.getKey(), entry.getValue());
             }
         }
 

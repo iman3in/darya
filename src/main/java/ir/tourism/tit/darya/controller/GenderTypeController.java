@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 @RestController
-@RequestMapping("gender")
+@RequestMapping("genderType")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class GenderTypeController {
     private final GenderTypeService genderTypeService;

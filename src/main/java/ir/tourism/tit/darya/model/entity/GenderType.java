@@ -18,24 +18,12 @@ public class GenderType extends BaseEntity {
     @Column(name = "DESCRIPTION")
     private String description;
 
-    @Column(name = "CREATE_DATE", insertable = false, updatable = false)
-    private Date createDate;
-
-    @Column(name = "LAST_MODIFIED_DATE",insertable = false, updatable = false)
-    private Date lastModifiedDate;
-
-    @Column(name = "CHECKSUM", insertable = false, updatable = false)
-    private String checksum;
-
     public GenderType() {
     }
 
-    public GenderType(String name, String description, Date createDate, Date lastModifiedDate, String checksum) {
+    public GenderType(String name, String description) {
         this.name = name;
         this.description = description;
-        this.createDate = createDate;
-        this.lastModifiedDate = lastModifiedDate;
-        this.checksum = checksum;
     }
 
     public String getName() {
@@ -52,29 +40,5 @@ public class GenderType extends BaseEntity {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public Date getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
-    }
-
-    public Date getLastModifiedDate() {
-        return lastModifiedDate;
-    }
-
-    public void setLastModifiedDate(Date lastModifiedDate) {
-        this.lastModifiedDate = lastModifiedDate;
-    }
-
-    public String getChecksum() {
-        return checksum;
-    }
-
-    public void setChecksum(String checksum) {
-        this.checksum = checksum;
     }
 }
