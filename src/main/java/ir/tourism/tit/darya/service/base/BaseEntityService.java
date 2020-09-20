@@ -25,5 +25,5 @@ public interface BaseEntityService<T extends BaseEntity> {
 
     T readById(Long id) throws SQLException, ReflectionException;
 
-    void delete(GenderType genderType) throws SQLException, ReflectionException;
+    void delete(T entity) throws SQLException, ReflectionException;
 }
