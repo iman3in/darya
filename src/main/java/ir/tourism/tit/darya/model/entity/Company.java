@@ -1,12 +1,15 @@
+/**
+ * @author I.Soltani
+ */
+
 package ir.tourism.tit.darya.model.entity;
 
-import ir.tourism.tit.darya.model.base.BaseEntity;
-import ir.tourism.tit.darya.model.base.Column;
-import ir.tourism.tit.darya.model.base.Entity;
+import ir.tourism.tit.darya.common.base.entity.BaseEntity;
 
+import javax.persistence.*;
 import java.sql.Date;
 
-@Entity(tableName = "TB_COMPANIES")
+@Entity(name = "TB_COMPANIES")
 public class Company extends BaseEntity {
     @Column(name = "HOLDING_NAME")
     private String holdingName;

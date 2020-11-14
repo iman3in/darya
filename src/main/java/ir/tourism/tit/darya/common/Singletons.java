@@ -4,6 +4,7 @@
 
 package ir.tourism.tit.darya.common;
 
+import ir.tourism.tit.darya.common.validation.Validator;
 import org.modelmapper.ModelMapper;
 
 public class Singletons {

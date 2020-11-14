@@ -4,13 +4,12 @@
 
 package ir.tourism.tit.darya.model.entity;
 
-import ir.tourism.tit.darya.model.base.BaseEntity;
-import ir.tourism.tit.darya.model.base.Column;
-import ir.tourism.tit.darya.model.base.Entity;
+import ir.tourism.tit.darya.common.base.entity.BaseEntity;
 
-import java.util.Date;
+import javax.persistence.*;
 
-@Entity (tableName = "TB_GENDER_TYPES")
+
+@Entity(name = "TB_GENDER_TYPES")
 public class GenderType extends BaseEntity {
     @Column(name = "NAME")
     private String name;

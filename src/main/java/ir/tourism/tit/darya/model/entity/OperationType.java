@@ -2,19 +2,24 @@
  * @author I.Soltani
  */
 
-package ir.tourism.tit.darya.model.dto;
+package ir.tourism.tit.darya.model.entity;
 
-import ir.tourism.tit.darya.model.base.BaseDto;
+import ir.tourism.tit.darya.common.base.entity.BaseEntity;
 
-public class GenderTypeDto extends BaseDto {
-    private  String name;
+import javax.persistence.*;
+
+@Entity(name = "TB_OPERATION_TYPE")
+public class OperationType extends BaseEntity {
+    @Column(name = "NAME")
+    private String name;
+
+    @Column(name = "DESCRIPTION")
     private String description;
 
-    public GenderTypeDto() {
+    public OperationType() {
     }
 
-    public GenderTypeDto(String name, String description) {
-
+    public OperationType(String name, String description) {
         this.name = name;
         this.description = description;
     }

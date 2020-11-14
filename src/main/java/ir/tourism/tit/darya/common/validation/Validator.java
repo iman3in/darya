@@ -2,7 +2,7 @@
  * @author I.Soltani
  */
 
-package ir.tourism.tit.darya.common;
+package ir.tourism.tit.darya.common.validation;
 
 public class Validator {
     /**

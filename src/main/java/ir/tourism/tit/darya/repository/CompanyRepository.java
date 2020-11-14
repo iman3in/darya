@@ -1,9 +1,13 @@
+/**
+ * @author I.Soltani
+ */
+
 package ir.tourism.tit.darya.repository;
 
 import ir.tourism.tit.darya.model.entity.Company;
-import ir.tourism.tit.darya.repository.base.CRUDRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class CompanyRepository extends CRUDRepository<Company> {
+public interface CompanyRepository extends JpaRepository<Company, Long> {
 }
