@@ -4,22 +4,20 @@
 
 package ir.tourism.tit.darya.controller;
 
-import ir.tourism.tit.darya.controller.response.TITResponseBody;
-import ir.tourism.tit.darya.controller.response.TITResponseCode;
-import ir.tourism.tit.darya.model.entity.Company;
-import ir.tourism.tit.darya.model.dto.CompanyDto;
-import ir.tourism.tit.darya.service.CompanyService;
 import ir.tourism.tit.darya.common.Singletons;
+import ir.tourism.tit.darya.model.dto.crud.CompanyDto;
+import ir.tourism.tit.darya.model.dto.CreateCompanyDto;
+import ir.tourism.tit.darya.model.entity.Company;
+import ir.tourism.tit.darya.model.entity.User;
+import ir.tourism.tit.darya.service.CompanyService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.management.ReflectionException;
-import java.sql.SQLException;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("company")
@@ -34,46 +32,57 @@ public class CompanyController {
         this.modelMapper = Singletons.getModelMapper();
     }
 
-    @PostMapping("/create")
-    public ResponseEntity<TITResponseBody> createGender (@RequestBody CompanyDto companyDto) throws SQLException, ReflectionException {
-        Company company = getEntity(companyDto);
-        TITResponseBody titResponseBody = new TITResponseBody(TITResponseCode.SUCCESS, getDTO(companyService.createEntity(company)));
-        return new ResponseEntity<>(titResponseBody, HttpStatus.OK);
-    }
+//    @PostMapping("/create")
+//    public ResponseEntity<CompanyCrudDto> createCompany (@RequestBody CompanyCrudRequestDto inputDto){
+//        Company company = companyService.create(modelMapper.map(inputDto, Company.class));
+//        CompanyCrudDto outputDto = modelMapper.map(company, CompanyCrudDto.class);
+//        return new ResponseEntity(outputDto, HttpStatus.OK);
+//    }
 
-    @PostMapping("/read")
-    public ResponseEntity<TITResponseBody> readGender (@RequestBody Long id) throws SQLException, ReflectionException {
-        TITResponseBody titResponseBody = new TITResponseBody(TITResponseCode.SUCCESS, getDTO(companyService.readById(id)));
-        return new ResponseEntity<>(titResponseBody, HttpStatus.OK);
+    @PostMapping("/create")
+    public ResponseEntity<CompanyDto> createCompany (@RequestBody CreateCompanyDto inputDto){
+        Company company =
+                companyService.createCompanyUser(
+                        modelMapper.map(inputDto.getCompanyDto(), Company.class),
+                        modelMapper.map(inputDto.getUserDto(), User.class));
+        CompanyDto outputDto = modelMapper.map(company, CompanyDto.class);
+        return new ResponseEntity(outputDto, HttpStatus.OK);
     }
 
     @PostMapping("/update")
-    public ResponseEntity<TITResponseBody> updateGender (@RequestBody CompanyDto companyDto) throws SQLException, ReflectionException {
-        Company company = getEntity(companyDto);
-        TITResponseBody titResponseBody = new TITResponseBody(TITResponseCode.SUCCESS, getDTO(companyService.updateEntity(company)));
-        return new ResponseEntity<>(titResponseBody, HttpStatus.OK);
+    public ResponseEntity<CompanyDto> updateCompany (@RequestBody CompanyDto inputDto){
+        Company company = modelMapper.map(inputDto, Company.class);
+        company = companyService.update(company);
+        CompanyDto outputDto = modelMapper.map(company, CompanyDto.class);
+        return new ResponseEntity<>(outputDto, HttpStatus.OK);
     }
 
-    @PostMapping("/delete")
-    public ResponseEntity<TITResponseBody> deleteGender (@RequestBody CompanyDto companyDto) throws SQLException, ReflectionException {
-        Company company = getEntity(companyDto);
-        companyService.delete(company);
-        TITResponseBody titResponseBody = new TITResponseBody(TITResponseCode.SUCCESS, "Deleted");
-        return new ResponseEntity<>(titResponseBody, HttpStatus.OK);
+    @PostMapping("/read")
+    public ResponseEntity<CompanyDto> readCompany (@RequestBody Long id) {
+        Company company = companyService.readById(id);
+        CompanyDto outputDto = modelMapper.map(company, CompanyDto.class);
+        return new ResponseEntity(outputDto, HttpStatus.OK);
+    }
+
+    @PostMapping("/readByUserId")
+    public ResponseEntity<CompanyDto> readByUserIdCompany (@RequestBody Long userId) {
+        Company company = companyService.readByUserId(userId);
+        CompanyDto outputDto = modelMapper.map(company, CompanyDto.class);
+        return new ResponseEntity(outputDto, HttpStatus.OK);
     }
 
     @PostMapping("/readAll")
-    public ResponseEntity<TITResponseBody> readAllGender () throws SQLException, ReflectionException {
-        TITResponseBody titResponseBody = new TITResponseBody(TITResponseCode.SUCCESS, StreamSupport.stream(companyService.readAllEntities().spliterator(), false).map(this::getDTO)
-                .collect(Collectors.toList()));
-        return new ResponseEntity<>(titResponseBody, HttpStatus.OK);
+    public ResponseEntity<List<CompanyDto>> readAllCompany (){
+        List<CompanyDto> responseDtoList = new ArrayList<>();
+        List<Company> companyList = companyService.readAll();
+        for (Company company : companyList)
+            responseDtoList.add(modelMapper.map(company, CompanyDto.class));
+        return new ResponseEntity<>(responseDtoList, HttpStatus.OK);
     }
 
-    private CompanyDto getDTO(Company company) {
-        return modelMapper.map(company, CompanyDto.class);
-    }
-
-    private Company getEntity(CompanyDto companyDto) {
-        return modelMapper.map(companyDto, Company.class);
+    @PostMapping("/delete")
+    public ResponseEntity<String> deleteCompany (@RequestBody Long id){
+        companyService.delete(id);
+        return new ResponseEntity<>("deleted", HttpStatus.OK);
     }
 }

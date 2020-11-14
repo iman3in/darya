@@ -1,7 +1,3 @@
-/**
- * @author I.Soltani
- */
-
 package ir.tourism.tit.darya.model.entity;
 
 import ir.tourism.tit.darya.common.BaseEntity;
@@ -15,16 +11,16 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter @Setter
-@Entity(name = "TB_GENDER_TYPE")
-public class GenderType implements BaseEntity {
+@Entity(name = "TB_USER")
+public class User implements BaseEntity {
     @Id
     @Column(name = "ID", updatable = false, nullable = false)
-    @GeneratedValue(generator = "GENDER_TYPE_SEQ", strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(generator = "USER_SEQ", strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    @Column(name = "NAME")
-    private String name;
+    @Column(name = "USERNAME")
+    private String username;
 
-    @Column(name = "DESCRIPTION")
-    private String description;
+    @Column(name = "PASSWORD")
+    private String password;
 }

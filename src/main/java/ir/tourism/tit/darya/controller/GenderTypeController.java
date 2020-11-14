@@ -4,22 +4,18 @@
 
 package ir.tourism.tit.darya.controller;
 
-import ir.tourism.tit.darya.controller.response.TITResponseBody;
-import ir.tourism.tit.darya.controller.response.TITResponseCode;
-import ir.tourism.tit.darya.model.entity.GenderType;
-import ir.tourism.tit.darya.model.dto.GenderTypeDto;
-import ir.tourism.tit.darya.service.GenderTypeService;
 import ir.tourism.tit.darya.common.Singletons;
+import ir.tourism.tit.darya.model.dto.crud.GenderTypeDto;
+import ir.tourism.tit.darya.model.entity.GenderType;
+import ir.tourism.tit.darya.service.GenderTypeService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.management.ReflectionException;
-import java.sql.SQLException;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("genderType")
@@ -35,45 +31,39 @@ public class GenderTypeController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<TITResponseBody> createGender (@RequestBody GenderTypeDto genderTypeDto) throws SQLException, ReflectionException {
-        GenderType genderType = getEntity(genderTypeDto);
-        TITResponseBody titResponseBody = new TITResponseBody(TITResponseCode.SUCCESS, getDTO(genderTypeService.createEntity(genderType)));
-        return new ResponseEntity<>(titResponseBody, HttpStatus.OK);
-    }
-
-    @PostMapping("/read")
-    public ResponseEntity<TITResponseBody> readGender (@RequestBody Long id) throws SQLException, ReflectionException {
-        TITResponseBody titResponseBody = new TITResponseBody(TITResponseCode.SUCCESS, getDTO(genderTypeService.readById(id)));
-        return new ResponseEntity<>(titResponseBody, HttpStatus.OK);
+    public ResponseEntity<GenderTypeDto> createGenderType (@RequestBody GenderTypeDto inputDto){
+        GenderType genderType = genderTypeService.create(modelMapper.map(inputDto, GenderType.class));
+        GenderTypeDto outputDto = modelMapper.map(genderType, GenderTypeDto.class);
+        return new ResponseEntity(outputDto, HttpStatus.OK);
     }
 
     @PostMapping("/update")
-    public ResponseEntity<TITResponseBody> updateGender (@RequestBody GenderTypeDto genderTypeDto) throws SQLException, ReflectionException {
-        GenderType genderType = getEntity(genderTypeDto);
-        TITResponseBody titResponseBody = new TITResponseBody(TITResponseCode.SUCCESS, getDTO(genderTypeService.updateEntity(genderType)));
-        return new ResponseEntity<>(titResponseBody, HttpStatus.OK);
+    public ResponseEntity<GenderTypeDto> updateGenderType (@RequestBody GenderTypeDto inputDto){
+        GenderType genderType = modelMapper.map(inputDto, GenderType.class);
+        genderType = genderTypeService.update(genderType);
+        GenderTypeDto outputDto = modelMapper.map(genderType, GenderTypeDto.class);
+        return new ResponseEntity<>(outputDto, HttpStatus.OK);
     }
 
-    @PostMapping("/delete")
-    public ResponseEntity<TITResponseBody> deleteGender (@RequestBody GenderTypeDto genderTypeDto) throws SQLException, ReflectionException {
-        GenderType genderType = getEntity(genderTypeDto);
-        genderTypeService.delete(genderType);
-        TITResponseBody titResponseBody = new TITResponseBody(TITResponseCode.SUCCESS, "Deleted");
-        return new ResponseEntity<>(titResponseBody, HttpStatus.OK);
+    @PostMapping("/read")
+    public ResponseEntity<GenderTypeDto> readGenderType (@RequestBody Long id) {
+        GenderType genderType = genderTypeService.readById(id);
+        GenderTypeDto outputDto = modelMapper.map(genderType, GenderTypeDto.class);
+        return new ResponseEntity(outputDto, HttpStatus.OK);
     }
 
     @PostMapping("/readAll")
-    public ResponseEntity<TITResponseBody> readAllGender () throws SQLException, ReflectionException {
-        TITResponseBody titResponseBody = new TITResponseBody(TITResponseCode.SUCCESS, StreamSupport.stream(genderTypeService.readAllEntities().spliterator(), false).map(this::getDTO)
-                .collect(Collectors.toList()));
-        return new ResponseEntity<>(titResponseBody, HttpStatus.OK);
+    public ResponseEntity<List<GenderTypeDto>> readAllGenderType (){
+        List<GenderTypeDto> responseDtoList = new ArrayList<>();
+        List<GenderType> genderTypeList = genderTypeService.readAll();
+        for (GenderType genderType : genderTypeList)
+            responseDtoList.add(modelMapper.map(genderType, GenderTypeDto.class));
+        return new ResponseEntity<>(responseDtoList, HttpStatus.OK);
     }
 
-    private GenderTypeDto getDTO(GenderType genderType) {
-        return modelMapper.map(genderType, GenderTypeDto.class);
-    }
-
-    private GenderType getEntity(GenderTypeDto genderTypeDto) {
-        return modelMapper.map(genderTypeDto, GenderType.class);
+    @PostMapping("/delete")
+    public ResponseEntity<String> deleteGenderType (@RequestBody Long id){
+        genderTypeService.delete(id);
+        return new ResponseEntity<>("deleted", HttpStatus.OK);
     }
 }

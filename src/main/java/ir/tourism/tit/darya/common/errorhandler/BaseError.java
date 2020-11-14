@@ -2,7 +2,7 @@
  * @author I.Soltani
  */
 
-package ir.tourism.tit.darya.controller.response;
+package ir.tourism.tit.darya.common.errorhandler;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.validator.internal.engine.path.PathImpl;

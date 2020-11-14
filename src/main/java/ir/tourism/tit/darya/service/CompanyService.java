@@ -4,51 +4,33 @@
 
 package ir.tourism.tit.darya.service;
 
+import ir.tourism.tit.darya.model.entity.User;
 import ir.tourism.tit.darya.repository.CompanyRepository;
-import ir.tourism.tit.darya.service.base.BaseEntityService;
 import ir.tourism.tit.darya.model.entity.Company;
-import org.springframework.beans.factory.annotation.Autowired;
+import ir.tourism.tit.darya.common.service.BaseEntityServiceJpaCrudImpl;
 import org.springframework.stereotype.Service;
 
-import javax.management.ReflectionException;
-import java.sql.SQLException;
 import java.util.Optional;
 
 @Service
-public class CompanyService implements BaseEntityService<Company> {
+public class CompanyService extends BaseEntityServiceJpaCrudImpl<Company, CompanyRepository> {
+    private final UserService userService;
 
-    private final CompanyRepository companyRepository;
-
-    @Autowired
-    public CompanyService(CompanyRepository companyRepository) {
-        this.companyRepository = companyRepository;
+    public CompanyService(CompanyRepository companyRepository, UserService userService) {
+        super(companyRepository);
+        this.userService = userService;
     }
 
-    @Override
-    public Company createEntity(Company entity) throws SQLException, ReflectionException {
-        return companyRepository.create(entity);
+    public Company createCompanyUser(Company company, User user){
+        User outUser = userService.create(user);
+        company.setUser(outUser);
+        return create(company);
     }
 
-    @Override
-    public Company updateEntity(Company entity) throws SQLException, ReflectionException {
-        return companyRepository.update(entity);
-    }
-
-    @Override
-    public Iterable<Company> readAllEntities() throws SQLException, ReflectionException {
-        return companyRepository.readAll();
-    }
-
-    @Override
-    public Company readById(Long id) throws SQLException, ReflectionException {
-        Optional<Company> company = companyRepository.readById(id);
-        if (!company.isPresent())
-            throw new IllegalArgumentException();
-        return company.get();
-    }
-
-    @Override
-    public void delete(Company company) throws SQLException, ReflectionException {
-        companyRepository.delete(company);
+    public Company readByUserId(Long userId){
+        Optional<Company> companyOptional = repository.findByUser_Id(userId);
+        if (!companyOptional.isPresent())
+            throw new IllegalArgumentException("Company Not Found!");
+        return companyOptional.get();
     }
 }
