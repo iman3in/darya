@@ -30,7 +30,7 @@ public abstract class BaseEntityServiceJpaCrudImpl<EntityGeneric extends BaseEnt
     public EntityGeneric update(@Valid EntityGeneric entity) {
         if (!repository.existsById(entity.getId()))
             throw new IllegalArgumentException("Entity Not Exist");
-        return (EntityGeneric) repository.saveAndFlush(entity);
+        return (EntityGeneric) repository.save(entity);
     }
 
     @Override
