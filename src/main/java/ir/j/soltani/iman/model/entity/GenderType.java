@@ -2,9 +2,9 @@
  * @author I.Soltani
  */
 
-package ir.tourism.tit.darya.model.entity;
+package ir.j.soltani.iman.model.entity;
 
-import ir.tourism.tit.darya.common.BaseEntity;
+import ir.j.soltani.iman.common.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

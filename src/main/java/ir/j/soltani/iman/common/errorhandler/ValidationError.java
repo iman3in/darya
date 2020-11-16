@@ -2,7 +2,7 @@
  * @author I.Soltani
  */
 
-package ir.tourism.tit.darya.common.errorhandler;
+package ir.j.soltani.iman.common.errorhandler;
 
 public class ValidationError implements SubError {
 

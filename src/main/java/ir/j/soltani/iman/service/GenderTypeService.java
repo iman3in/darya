@@ -2,11 +2,11 @@
  * @author I.Soltani
  */
 
-package ir.tourism.tit.darya.service;
+package ir.j.soltani.iman.service;
 
-import ir.tourism.tit.darya.model.entity.GenderType;
-import ir.tourism.tit.darya.repository.GenderTypeRepository;
-import ir.tourism.tit.darya.common.service.BaseEntityServiceJpaCrudImpl;
+import ir.j.soltani.iman.repository.GenderTypeRepository;
+import ir.j.soltani.iman.model.entity.GenderType;
+import ir.j.soltani.iman.common.service.BaseEntityServiceJpaCrudImpl;
 import org.springframework.stereotype.Service;
 
 @Service

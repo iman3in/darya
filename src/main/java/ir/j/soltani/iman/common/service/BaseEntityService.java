@@ -2,9 +2,9 @@
  * @author I.Soltani
  */
 
-package ir.tourism.tit.darya.common.service;
+package ir.j.soltani.iman.common.service;
 
-import ir.tourism.tit.darya.common.BaseEntity;
+import ir.j.soltani.iman.common.BaseEntity;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;

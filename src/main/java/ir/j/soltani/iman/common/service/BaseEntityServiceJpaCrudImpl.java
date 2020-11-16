@@ -2,9 +2,9 @@
  * @author I.Soltani
  */
 
-package ir.tourism.tit.darya.common.service;
+package ir.j.soltani.iman.common.service;
 
-import ir.tourism.tit.darya.common.BaseEntity;
+import ir.j.soltani.iman.common.BaseEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import javax.validation.Valid;

@@ -2,14 +2,14 @@
  * @author I.Soltani
  */
 
-package ir.tourism.tit.darya.controller;
+package ir.j.soltani.iman.controller;
 
-import ir.tourism.tit.darya.common.Singletons;
-import ir.tourism.tit.darya.model.dto.crud.CompanyDto;
-import ir.tourism.tit.darya.model.dto.CreateCompanyDto;
-import ir.tourism.tit.darya.model.entity.Company;
-import ir.tourism.tit.darya.model.entity.User;
-import ir.tourism.tit.darya.service.CompanyService;
+import ir.j.soltani.iman.common.Singletons;
+import ir.j.soltani.iman.model.dto.CreateCompanyDto;
+import ir.j.soltani.iman.model.dto.crud.CompanyDto;
+import ir.j.soltani.iman.model.entity.Company;
+import ir.j.soltani.iman.model.entity.User;
+import ir.j.soltani.iman.service.CompanyService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

@@ -2,12 +2,12 @@
  * @author I.Soltani
  */
 
-package ir.tourism.tit.darya.controller;
+package ir.j.soltani.iman.controller;
 
-import ir.tourism.tit.darya.common.Singletons;
-import ir.tourism.tit.darya.model.dto.crud.GenderTypeDto;
-import ir.tourism.tit.darya.model.entity.GenderType;
-import ir.tourism.tit.darya.service.GenderTypeService;
+import ir.j.soltani.iman.common.Singletons;
+import ir.j.soltani.iman.model.dto.crud.GenderTypeDto;
+import ir.j.soltani.iman.model.entity.GenderType;
+import ir.j.soltani.iman.service.GenderTypeService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

@@ -2,7 +2,7 @@
  * @author I.Soltani
  */
 
-package ir.tourism.tit.darya.common;
+package ir.j.soltani.iman.common;
 
 public interface BaseEntity {
     Long getId();

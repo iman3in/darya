@@ -1,8 +1,8 @@
-package ir.tourism.tit.darya.service;
+package ir.j.soltani.iman.service;
 
-import ir.tourism.tit.darya.common.service.BaseEntityServiceJpaCrudImpl;
-import ir.tourism.tit.darya.model.entity.User;
-import ir.tourism.tit.darya.repository.UserRepository;
+import ir.j.soltani.iman.common.service.BaseEntityServiceJpaCrudImpl;
+import ir.j.soltani.iman.repository.UserRepository;
+import ir.j.soltani.iman.model.entity.User;
 import org.springframework.stereotype.Service;
 
 @Service

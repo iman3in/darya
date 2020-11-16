@@ -1,4 +1,4 @@
-package ir.tourism.tit.darya.model.dto.crud;
+package ir.j.soltani.iman.model.dto.crud;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

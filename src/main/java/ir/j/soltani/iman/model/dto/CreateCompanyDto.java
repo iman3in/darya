@@ -2,10 +2,10 @@
  * @author I.Soltani
  */
 
-package ir.tourism.tit.darya.model.dto;
+package ir.j.soltani.iman.model.dto;
 
-import ir.tourism.tit.darya.model.dto.crud.CompanyDto;
-import ir.tourism.tit.darya.model.dto.crud.UserDto;
+import ir.j.soltani.iman.model.dto.crud.CompanyDto;
+import ir.j.soltani.iman.model.dto.crud.UserDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
