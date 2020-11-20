@@ -23,7 +23,7 @@ public interface BaseEntityService<T extends BaseEntity> {
 
     Iterable<T> readAll();
 
-    void archive(T entity);
+    void archive(@NotNull Long id);
 
     Iterable<T> readByProperty(String propertyName, Object searchParam);
 

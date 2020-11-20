@@ -32,13 +32,6 @@ public class CompanyController {
         this.modelMapper = Singletons.getModelMapper();
     }
 
-//    @PostMapping("/create")
-//    public ResponseEntity<CompanyCrudDto> createCompany (@RequestBody CompanyCrudRequestDto inputDto){
-//        Company company = companyService.create(modelMapper.map(inputDto, Company.class));
-//        CompanyCrudDto outputDto = modelMapper.map(company, CompanyCrudDto.class);
-//        return new ResponseEntity(outputDto, HttpStatus.OK);
-//    }
-
     @PostMapping("/create")
     public ResponseEntity<CompanyDto> createCompany (@RequestBody CreateCompanyDto inputDto){
         Company company =
@@ -69,15 +62,6 @@ public class CompanyController {
         Company company = companyService.readByUserId(userId);
         CompanyDto outputDto = modelMapper.map(company, CompanyDto.class);
         return new ResponseEntity(outputDto, HttpStatus.OK);
-    }
-
-    @PostMapping("/readAll")
-    public ResponseEntity<List<CompanyDto>> readAllCompany (){
-        List<CompanyDto> responseDtoList = new ArrayList<>();
-        List<Company> companyList = companyService.readAll();
-        for (Company company : companyList)
-            responseDtoList.add(modelMapper.map(company, CompanyDto.class));
-        return new ResponseEntity<>(responseDtoList, HttpStatus.OK);
     }
 
     @PostMapping("/delete")

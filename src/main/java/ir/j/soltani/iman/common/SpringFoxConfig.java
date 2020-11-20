@@ -17,9 +17,9 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class SpringFoxConfig {
     @Bean
     public Docket api() {
-        return new Docket(DocumentationType.SWAGGER_2)
+        return new Docket(DocumentationType.SPRING_WEB)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("ir.tourism.tit.darya"))
+                .apis(RequestHandlerSelectors.basePackage("ir.j.soltani.iman"))
                 .paths(PathSelectors.any())
                 .build();
     }

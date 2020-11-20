@@ -4,33 +4,33 @@
 
 package ir.j.soltani.iman.service;
 
+import ir.j.soltani.iman.model.entity.UserRole;
 import ir.j.soltani.iman.repository.CompanyRepository;
 import ir.j.soltani.iman.model.entity.User;
 import ir.j.soltani.iman.model.entity.Company;
 import ir.j.soltani.iman.common.service.BaseEntityServiceJpaCrudImpl;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 public class CompanyService extends BaseEntityServiceJpaCrudImpl<Company, CompanyRepository> {
     private final UserService userService;
+    private final UserRoleService userRoleService;
 
-    public CompanyService(CompanyRepository companyRepository, UserService userService) {
+
+    public CompanyService(CompanyRepository companyRepository, UserService userService, UserRoleService userRoleService) {
         super(companyRepository);
         this.userService = userService;
+        this.userRoleService = userRoleService;
     }
 
     public Company createCompanyUser(Company company, User user){
-        User outUser = userService.create(user);
-        company.setUser(outUser);
-        return create(company);
+        UserRole userRole = new UserRole();
+        userRole.setCompany(create(company));
+        userRole.setUser(userService.create(user));
+        return userRoleService.create(userRole).getCompany();
     }
 
     public Company readByUserId(Long userId){
-        Optional<Company> companyOptional = repository.findByUser_Id(userId);
-        if (!companyOptional.isPresent())
-            throw new IllegalArgumentException("Company Not Found!");
-        return companyOptional.get();
+        return userRoleService.findCompanyByUserId(userId);
     }
 }
