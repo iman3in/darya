@@ -62,8 +62,10 @@ public abstract class BaseEntityServiceJpaCrudImpl<EntityGeneric extends BaseEnt
     }
 
     @Override
-    public void archive(@Valid EntityGeneric entity) {
-        //TODO
+    public void archive(@NotNull Long id) {
+        EntityGeneric entity = readById(id);
+        entity.setActiveEnumId(2);
+        repository.save(entity);
     }
 
     @Override

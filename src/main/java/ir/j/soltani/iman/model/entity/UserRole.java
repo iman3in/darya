@@ -1,7 +1,3 @@
-/**
- * @author I.Soltani
- */
-
 package ir.j.soltani.iman.model.entity;
 
 import ir.j.soltani.iman.common.BaseEntity;
@@ -12,22 +8,21 @@ import lombok.Setter;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
-import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter @Setter
-@Entity(name = "TB_USER")
+@Entity(name = "to_user_role")
 @Where(clause = "active_enum_id<>2")
-public class User extends BaseEntity {
+public class UserRole extends BaseEntity {
     @Id
     @Column(name = "ID", updatable = false, nullable = false)
-    @GeneratedValue(generator = "USER_SEQ", strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(generator = "user_role_seq", strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    @Column(name = "USERNAME")
-    private String username;
+    @OneToOne
+    private User user;
 
-    @Column(name = "PASSWORD")
-    private String password;
+    @OneToOne
+    private Company company;
 }

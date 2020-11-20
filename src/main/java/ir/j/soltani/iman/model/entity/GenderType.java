@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 
@@ -16,7 +17,8 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Getter @Setter
 @Entity(name = "TB_GENDER_TYPE")
-public class GenderType implements BaseEntity {
+@Where(clause = "active_enum_id<>2")
+public class GenderType extends BaseEntity {
     @Id
     @Column(name = "ID", updatable = false, nullable = false)
     @GeneratedValue(generator = "GENDER_TYPE_SEQ", strategy = GenerationType.SEQUENCE)

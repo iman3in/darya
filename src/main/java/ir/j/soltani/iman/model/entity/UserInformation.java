@@ -17,17 +17,17 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter @Setter
-@Entity(name = "TB_USER")
+@Entity(name = "tb_user_information")
 @Where(clause = "active_enum_id<>2")
-public class User extends BaseEntity {
+public class UserInformation extends BaseEntity {
     @Id
     @Column(name = "ID", updatable = false, nullable = false)
-    @GeneratedValue(generator = "USER_SEQ", strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(generator = "user_information_seq", strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    @Column(name = "USERNAME")
-    private String username;
+    @OneToOne
+    private User user;
 
-    @Column(name = "PASSWORD")
-    private String password;
+    @OneToMany (mappedBy = "userInformation", fetch = FetchType.LAZY)
+    private List<Email> emailList;
 }
