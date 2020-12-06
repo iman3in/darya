@@ -1,6 +1,6 @@
 package ir.j.soltani.iman.performance;
 
-import ir.j.soltani.iman.model.entity.type.GenderType;
+import ir.j.soltani.iman.entity.type.GenderType;
 import ir.j.soltani.iman.repository.type.GenderTypeRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -5,11 +5,11 @@
 package ir.j.soltani.iman.controller.company;
 
 import ir.j.soltani.iman.common.Singletons;
-import ir.j.soltani.iman.model.dto.company.CompanyCreateRequestDto;
-import ir.j.soltani.iman.model.dto.company.CompanyDto;
-import ir.j.soltani.iman.model.entity.company.Company;
-import ir.j.soltani.iman.model.entity.user.User;
-import ir.j.soltani.iman.service.company.CompanyService;
+import ir.j.soltani.iman.controller.company.dto.CompanyCreateRequestDto;
+import ir.j.soltani.iman.controller.company.dto.CompanyDto;
+import ir.j.soltani.iman.entity.Company;
+import ir.j.soltani.iman.entity.userinformation.User;
+import ir.j.soltani.iman.service.CompanyService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

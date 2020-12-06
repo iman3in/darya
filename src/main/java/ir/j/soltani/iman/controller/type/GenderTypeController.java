@@ -5,8 +5,8 @@
 package ir.j.soltani.iman.controller.type;
 
 import ir.j.soltani.iman.common.Singletons;
-import ir.j.soltani.iman.model.dto.type.GenderTypeDto;
-import ir.j.soltani.iman.model.entity.type.GenderType;
+import ir.j.soltani.iman.controller.type.dto.GenderTypeDto;
+import ir.j.soltani.iman.entity.type.GenderType;
 import ir.j.soltani.iman.service.type.GenderTypeService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,15 +45,15 @@ public class GenderTypeController {
         return new ResponseEntity<>(outputDto, HttpStatus.OK);
     }
 
-    @PostMapping("/read")
-    public ResponseEntity<GenderTypeDto> readGenderType (@RequestBody Long id) {
+    @PostMapping("/findById")
+    public ResponseEntity<GenderTypeDto> findGenderTypeById (@RequestBody Long id) {
         GenderType genderType = genderTypeService.readById(id);
         GenderTypeDto outputDto = modelMapper.map(genderType, GenderTypeDto.class);
         return new ResponseEntity(outputDto, HttpStatus.OK);
     }
 
-    @PostMapping("/readAll")
-    public ResponseEntity<List<GenderTypeDto>> readAllGenderType (){
+    @PostMapping("/findAll")
+    public ResponseEntity<List<GenderTypeDto>> findAllGenderType (){
         List<GenderTypeDto> responseDtoList = new ArrayList<>();
         List<GenderType> genderTypeList = genderTypeService.readAll();
         for (GenderType genderType : genderTypeList)

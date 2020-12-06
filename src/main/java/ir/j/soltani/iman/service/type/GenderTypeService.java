@@ -5,7 +5,7 @@
 package ir.j.soltani.iman.service.type;
 
 import ir.j.soltani.iman.repository.type.GenderTypeRepository;
-import ir.j.soltani.iman.model.entity.type.GenderType;
+import ir.j.soltani.iman.entity.type.GenderType;
 import ir.j.soltani.iman.common.service.BaseEntityServiceJpaCrudImpl;
 import org.springframework.stereotype.Service;
 
