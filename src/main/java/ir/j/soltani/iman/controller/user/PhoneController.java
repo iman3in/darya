@@ -5,9 +5,8 @@
 package ir.j.soltani.iman.controller.user;
 
 import ir.j.soltani.iman.common.Singletons;
-import ir.j.soltani.iman.model.dto.user.PhoneDto;
-import ir.j.soltani.iman.model.entity.user.Phone;
-import ir.j.soltani.iman.service.user.PhoneService;
+import ir.j.soltani.iman.entity.Phone;
+import ir.j.soltani.iman.service.PhoneService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

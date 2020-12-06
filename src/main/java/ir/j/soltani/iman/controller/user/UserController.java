@@ -1,9 +1,7 @@
 package ir.j.soltani.iman.controller.user;
 
 import ir.j.soltani.iman.common.Singletons;
-import ir.j.soltani.iman.model.dto.user.LoginDto;
-import ir.j.soltani.iman.model.dto.user.UserDto;
-import ir.j.soltani.iman.service.user.UserService;
+import ir.j.soltani.iman.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -5,9 +5,8 @@
 package ir.j.soltani.iman.controller.type;
 
 import ir.j.soltani.iman.common.Singletons;
-import ir.j.soltani.iman.model.dto.type.GenderTypeDto;
-import ir.j.soltani.iman.model.entity.type.GenderType;
-import ir.j.soltani.iman.service.type.GenderTypeService;
+import ir.j.soltani.iman.entity.GenderType;
+import ir.j.soltani.iman.service.GenderTypeService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
