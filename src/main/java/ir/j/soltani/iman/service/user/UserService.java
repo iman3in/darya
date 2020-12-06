@@ -9,6 +9,7 @@ import ir.j.soltani.iman.model.entity.user.UserInformation;
 import ir.j.soltani.iman.repository.user.UserRepository;
 import ir.j.soltani.iman.model.entity.user.User;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
@@ -25,6 +26,7 @@ public class UserService extends BaseEntityServiceJpaCrudImpl<User, UserReposito
     }
 
     @Override
+    @Transactional
     public User create(@Valid User user){
         UserInformation userInformation = new UserInformation();
         User outUser = super.create(user);
@@ -45,10 +47,7 @@ public class UserService extends BaseEntityServiceJpaCrudImpl<User, UserReposito
          */
         String token = UUID.randomUUID().toString();
         userOptional.get().setToken(token);
-        /**
-         * @Todo
-         * should be change to JWT
-         */
+        /*********************************/
         User user = update(userOptional.get());
         return user.getToken();
     }
@@ -59,4 +58,17 @@ public class UserService extends BaseEntityServiceJpaCrudImpl<User, UserReposito
             throw new IllegalArgumentException("You'r Not Logged in!");
         return user.get();
     }
+
+    public void logout(String token) {
+        User user = findByToken(token);
+        user.setToken(null);
+        update(user);
+    }
+
+    public Long authorize(String token) {
+        User user = findByToken(token);
+        return user.getId();
+    }
+
+
 }
