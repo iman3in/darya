@@ -2,22 +2,17 @@
  * @author I.Soltani
  */
 
-package ir.j.soltani.iman.controller;
+package ir.j.soltani.iman.controller.company;
 
 import ir.j.soltani.iman.common.Singletons;
-import ir.j.soltani.iman.model.dto.CreateCompanyDto;
-import ir.j.soltani.iman.model.dto.crud.CompanyDto;
-import ir.j.soltani.iman.model.entity.Company;
-import ir.j.soltani.iman.model.entity.User;
+import ir.j.soltani.iman.entity.Company;
+import ir.j.soltani.iman.entity.User;
 import ir.j.soltani.iman.service.CompanyService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 @RequestMapping("company")
@@ -33,7 +28,7 @@ public class CompanyController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<CompanyDto> createCompany (@RequestBody CreateCompanyDto inputDto){
+    public ResponseEntity<CompanyDto> createCompany (@RequestBody CompanyCreateRequestDto inputDto){
         Company company =
                 companyService.createCompanyUser(
                         modelMapper.map(inputDto.getCompanyDto(), Company.class),

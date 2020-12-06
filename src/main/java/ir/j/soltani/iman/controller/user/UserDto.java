@@ -2,7 +2,7 @@
  * @author:I.Soltani
  */
 
-package ir.j.soltani.iman.model.dto.crud;
+package ir.j.soltani.iman.controller.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

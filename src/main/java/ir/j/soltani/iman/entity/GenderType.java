@@ -2,7 +2,7 @@
  * @author I.Soltani
  */
 
-package ir.j.soltani.iman.model.entity;
+package ir.j.soltani.iman.entity;
 
 import ir.j.soltani.iman.common.BaseEntity;
 import lombok.AllArgsConstructor;
@@ -21,10 +21,10 @@ import javax.persistence.*;
 public class GenderType extends BaseEntity {
     @Id
     @Column(name = "ID", updatable = false, nullable = false)
-    @GeneratedValue(generator = "GENDER_TYPE_SEQ", strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(generator = "GENDER_TYPE_SEQ", strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "NAME")
+    @Column(name = "NAME", nullable = false)
     private String name;
 
     @Column(name = "DESCRIPTION")

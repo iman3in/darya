@@ -2,7 +2,7 @@
  * @author I.Soltani
  */
 
-package ir.j.soltani.iman.model.entity;
+package ir.j.soltani.iman.entity;
 
 import ir.j.soltani.iman.common.BaseEntity;
 import lombok.AllArgsConstructor;
@@ -22,12 +22,16 @@ import java.util.List;
 public class UserInformation extends BaseEntity {
     @Id
     @Column(name = "ID", updatable = false, nullable = false)
-    @GeneratedValue(generator = "user_information_seq", strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(generator = "user_information_seq", strategy = GenerationType.IDENTITY)
     private Long id;
 
     @OneToOne
+    @JoinColumn(name = "user_id")
     private User user;
 
     @OneToMany (mappedBy = "userInformation", fetch = FetchType.LAZY)
     private List<Email> emailList;
+
+    @OneToMany (mappedBy = "userInformation", fetch = FetchType.LAZY)
+    private List<Phone> phoneList;
 }

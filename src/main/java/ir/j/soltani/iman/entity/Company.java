@@ -2,7 +2,7 @@
  * @author I.Soltani
  */
 
-package ir.j.soltani.iman.model.entity;
+package ir.j.soltani.iman.entity;
 
 import ir.j.soltani.iman.common.BaseEntity;
 import lombok.AllArgsConstructor;
@@ -22,7 +22,7 @@ import java.util.Date;
 public class Company extends BaseEntity {
     @Id
     @Column(name = "ID", updatable = false, nullable = false)
-    @GeneratedValue(generator = "COMPANY_SEQ", strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(generator = "COMPANY_SEQ", strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "HOLDING_NAME")

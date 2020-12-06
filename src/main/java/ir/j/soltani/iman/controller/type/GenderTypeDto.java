@@ -1,4 +1,4 @@
-package ir.j.soltani.iman.model.dto.crud;
+package ir.j.soltani.iman.controller.type;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,10 +7,9 @@ import lombok.Setter;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
-public class EmailDto {
+@Getter @Setter
+public class GenderTypeDto {
     private Long id;
-    private String emailAddress;
-    private Long userId;
+    private String name;
+    private String description;
 }

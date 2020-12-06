@@ -2,7 +2,7 @@
  * @author I.Soltani
  */
 
-package ir.j.soltani.iman.model.entity;
+package ir.j.soltani.iman.entity;
 
 import ir.j.soltani.iman.common.BaseEntity;
 import lombok.AllArgsConstructor;
@@ -22,7 +22,7 @@ import javax.persistence.*;
 public class Email extends BaseEntity {
     @Id
     @Column(name = "id", updatable = false, nullable = false)
-    @GeneratedValue(generator = "email_seq", strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(generator = "email_seq", strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "email_address", unique = true, nullable = false)
